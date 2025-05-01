@@ -1,0 +1,16 @@
+
+### START SERVER
+# uvicorn backend.main:app --reload
+
+### LOGIN
+POST http://127.0.0.1:8000/login
+Content-Type: application/json
+
+{
+    "username": "admin",
+    "password": "administrator"
+}
+
+### ACCESS SECURE DATA
+GET http://127.0.0.1:8000/secure-data
+Authorization: Bearer ADD_YOUR_TOKEN_HERE
