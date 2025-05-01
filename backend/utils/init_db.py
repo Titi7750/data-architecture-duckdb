@@ -2,16 +2,17 @@ import os
 import sys
 import duckdb
 import pandas as pd
-from auth import hash_password
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-database_path = os.path.join(os.path.dirname(__file__), '..', 'city_bike.duckdb')
+from auth import hash_password
+
+database_path = os.path.join(os.path.dirname(__file__), '..', '..', 'city_bike.duckdb')
 connection_database = duckdb.connect(database_path)
 
-df_trip = pd.read_csv("./datasets/trip.csv", sep=",", on_bad_lines='skip')
-df_station = pd.read_csv("./datasets/station.csv", sep=",")
-df_weather = pd.read_csv("./datasets/weather.csv", sep=",")
+df_trip = pd.read_csv(os.getcwd() + "/datasets/trip.csv", sep=",", on_bad_lines='skip')
+df_station = pd.read_csv(os.getcwd() + "/datasets/station.csv", sep=",")
+df_weather = pd.read_csv(os.getcwd() + "/datasets/weather.csv", sep=",")
 
 connection_database.register("trip_df", df_trip)
 connection_database.register("station_df", df_station)
